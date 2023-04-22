@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html th:fragment="main(title, head, body, content)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title} ? ${title} + ' | Recuperación' : 'Recuperación'"/>
+    <div th:replace="~{asset::head}"/>
+    <div th:replace="${head} ? ${head} : ~{component::void}"/>
+</head>
+<body>
+<div th:replace="~{component::navbar}"></div>
+<div class="container">
+    <div class="card shadow" th:insert="${content} ? ${content} : ~{component::void}"/>
+</div>
+<div th:replace="~{asset::head}"/>
+<div th:replace="${body} ? ${body} : ~{component::void}"/>
+</body>
+</html>
