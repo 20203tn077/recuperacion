@@ -3,12 +3,11 @@ package mx.edu.utez.recuperacion.model;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-public class Professor {
+@Table(name = "employees")
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,17 +17,16 @@ public class Professor {
     String surname;
     @Column(length = 45)
     String lastname;
-    @Column(nullable = false, length = 10)
-    String phone;
+    @Column(length = 13, unique = true)
+    String rfc;
+    @Column(length = 8, unique = true)
+    String employeeNumber;
     @Column(nullable = false, length = 60)
     String email;
-    @Column(nullable = false)
-    Float salary;
-    @CreatedDate
-    @Column(nullable = false)
-    LocalDateTime registerDate;
-    @ManyToOne
-    Degree degree;
+    @Column(nullable = false, length = 10)
+    String phone;
+    @ManyToOne(optional = false)
+    Car car;
 
     public Long getId() {
         return id;
@@ -62,12 +60,20 @@ public class Professor {
         this.lastname = lastname;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getRfc() {
+        return rfc;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public void setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
     }
 
     public String getEmail() {
@@ -78,27 +84,19 @@ public class Professor {
         this.email = email;
     }
 
-    public Float getSalary() {
-        return salary;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setSalary(Float salary) {
-        this.salary = salary;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
+    public Car getCar() {
+        return car;
     }
 
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public Degree getDegree() {
-        return degree;
-    }
-
-    public void setDegree(Degree degree) {
-        this.degree = degree;
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout::main(title = 'Registrar empleado', content = ~{::content}, head = null, body = null)}">
+<div th:fragment="content" class="vstack gap-3">
+    <div class="row align-items-center">
+        <div class="col-auto"><h3>Registrar nuevo empleado</h3></div>
+    </div>
+    <form method="post" th:action="@{/empleados/register}" class="row g-3" th:object="${employee}">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="name">Nombre:</label>
+            <input class="form-control" autocomplete="off" required type="text" maxlength="45" th:field="*{name}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="surname">Primer apellido:</label>
+            <input class="form-control" autocomplete="off" required type="text" maxlength="45" th:field="*{surname}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label for="lastname">Segundo apellido:</label>
+            <input class="form-control" autocomplete="off" type="text" maxlength="45" th:field="*{lastname}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="rfc">RFC:</label>
+            <input class="form-control" autocomplete="off" required type="text" pattern="^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$" maxlength="13" th:field="*{rfc}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="employeeNumber">Número de empleado:</label>
+            <input class="form-control" autocomplete="off" required type="text" maxlength="8" th:field="*{employeeNumber}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="email">Correo electrónico:</label>
+            <input class="form-control" autocomplete="off" required type="email" maxlength="60" th:field="*{email}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="phone">Teléfono:</label>
+            <input class="form-control" autocomplete="off" required type="text" minlength="10" maxlength="10" pattern="\d*" th:field="*{phone}">
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label class="required" for="car">Auto:</label>
+            <select class="form-select" required th:name="car.id" id="car">
+                <option value="">Seleccione un auto...</option>
+                <option th:selected="*{car} and *{car.id} == ${car.id}" th:each="car : ${cars}" th:value="${car.id}" th:text="${car.model}"/>
+            </select>
+        </div>
+        <div class="col-12">
+            <div class="row g-2 justify-content-end">
+                <div class="col-auto">
+                    <a th:href="@{/empleados}" class="btn btn-secondary"><i class="fas fa-times"></i><span class="text-btn">Cancelar</span></a>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i><span class="text-btn">Guardar</span></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</html>

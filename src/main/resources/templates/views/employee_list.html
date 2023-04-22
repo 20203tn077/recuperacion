@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout::main(title = 'Empleados', content = ~{::content}, head = null, body = null)}">
+<div th:fragment="content" class="vstack gap-3">
+    <div class="row align-items-center justify-content-between">
+        <div class="col-auto"><h3>Empleados</h3></div>
+        <div class="col-auto"><h1><a th:href="@{/empleados/registrar}" class="btn btn-success"><i class="fas fa-plus"></i><span class="text-btn">Registrar nuevo empleado</span></a></h1></div>
+    </div>
+    <hr>
+    <div th:if="${employees.size() > 0}" class="table-responsive">
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>No. empleado</th>
+                    <th>Nombre</th>
+                    <th>Auto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}" th:object="${employee}">
+                    <td th:text="*{employeeNumber}"/>
+                    <td th:text="*{name} + ' ' + *{surname} + ' ' + (*{lastname} ? *{lastname} : '')"/>
+                    <td th:text="*{car.model}"/>
+                    <td>
+                        <div class="row g-2 justify-content-center">
+                            <div class="col-auto">
+                                <a th:href="@{/empleados/visualizar/{id}(id = ${employee.id})}" title="Visualizar" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                            </div>
+                            <div class="col-auto">
+                                <a th:href="@{/empleados/actualizar/{id}(id = ${employee.id})}" title="Actualizar" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                            </div>
+                            <div class="col-auto">
+                                <a th:href="@{/empleados/delete/{id}(id = ${employee.id})}" title="Eliminar" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${employees.size() == 0}" class="alert alert-primary">
+        No se encontraron empleados
+    </div>
+</div>
+</html>

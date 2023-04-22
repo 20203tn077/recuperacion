@@ -6,12 +6,15 @@
     <div th:replace="~{asset::head}"/>
     <div th:replace="${head} ? ${head} : ~{component::void}"/>
 </head>
-<body>
+<body class="bg-light">
 <div th:replace="~{component::navbar}"></div>
-<div class="container">
-    <div class="card shadow" th:insert="${content} ? ${content} : ~{component::void}"/>
+<div class="container my-4">
+    <div class="card shadow">
+        <div class="card-body" th:insert="${content} ? ${content} : ~{component::void}"/>
+    </div>
 </div>
-<div th:replace="~{asset::head}"/>
+<div th:replace="~{asset::body}"/>
+<div th:replace="~{component::alert}"/>
 <div th:replace="${body} ? ${body} : ~{component::void}"/>
 </body>
 </html>

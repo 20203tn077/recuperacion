@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout::main(title = 'Empleado', content = ~{::content}, head = null, body = null)}">
+<div th:fragment="content" class="vstack gap-3">
+    <div class="row align-items-center">
+        <div class="col-auto"><h3>Empleado</h3></div>
+    </div>
+    <div class="row g-3" th:object="${employee}">
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Nombre:</label>
+            <h6 th:text="*{name}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Primer apellido:</label>
+            <h6 th:text="*{surname}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Segundo apellido:</label>
+            <h6 th:text="*{lastname}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>RFC:</label>
+            <h6 th:text="*{rfc}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Número de empleado:</label>
+            <h6 th:text="*{employeeNumber}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Correo electrónico:</label>
+            <h6 th:text="*{email}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Teléfono:</label>
+            <h6 th:text="*{phone}"/>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <label>Auto:</label>
+            <h6 th:text="*{car.model}"/>
+        </div>
+        <div class="col-12">
+            <div class="row g-2 justify-content-end">
+                <div class="col-auto">
+                    <a th:href="@{/empleados}" class="btn btn-secondary"><i class="fas fa-times"></i><span class="text-btn">Regresar</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

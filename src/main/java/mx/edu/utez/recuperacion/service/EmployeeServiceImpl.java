@@ -1,31 +1,31 @@
 package mx.edu.utez.recuperacion.service;
 
-import mx.edu.utez.recuperacion.model.Professor;
-import mx.edu.utez.recuperacion.repository.ProfessorRepository;
+import mx.edu.utez.recuperacion.model.Employee;
+import mx.edu.utez.recuperacion.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProfessorServiceImpl implements ProfessorService {
+public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
-    private ProfessorRepository professorRepository;
+    private EmployeeRepository employeeRepository;
 
     @Override
-    public List<Professor> findAll() {
-        return professorRepository.findAll();
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
     }
 
     @Override
-    public List<Professor> findById(long id) {
-        return findById(id);
+    public Employee findById(long id) {
+        return employeeRepository.findById(id).get();
     }
 
     @Override
-    public boolean save(Professor professor) {
+    public boolean save(Employee employee) {
         try {
-            professorRepository.save(professor);
+            employeeRepository.save(employee);
             return true;
         } catch (Exception e) {
             return false;
@@ -33,9 +33,9 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public boolean update(Professor professor) {
+    public boolean update(Employee employee) {
         try {
-            professorRepository.save(professor);
+            employeeRepository.save(employee);
             return true;
         } catch (Exception e) {
             return false;
@@ -45,7 +45,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     }   @Override
     public boolean delete(long id) {
         try {
-            professorRepository.deleteById(id);
+            employeeRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             return false;
